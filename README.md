@@ -1,5 +1,5 @@
 # TF-ID
-TF-ID: Table/Figure IDentifier for academic papers
+This repository contains the full training code to reproduce all TF-ID models. We also open-source the model weights and human annotated dataset all under mit license.
 
 ## Model Summary
 ![TF-ID](https://github.com/ai8hyf/TF-ID/blob/main/assets/cover.png)
@@ -13,13 +13,11 @@ TF-ID (Table/Figure IDentifier) is a family of object detection models finetuned
 | TF-ID-large-no-caption[[HF]](https://huggingface.co/yifeihu/TF-ID-large-no-caption) (Recommended) | 0.77B  | Extract tables/figures without caption text
 All TF-ID models are finetuned from [microsoft/Florence-2](https://huggingface.co/microsoft/Florence-2-large-ft) checkpoints.
 
-![Variants](https://github.com/ai8hyf/TF-ID/blob/main/assets/td-id-caption.png)
-
 ## Train TF-ID models from scratch
 1. Clone the repo: `git clone https://github.com/ai8hyf/TF-ID`
 2. `cd TF-ID`
 3. Download the [huggingface.co/datasets/yifeihu/TF-ID-arxiv-papers](https://huggingface.co/datasets/yifeihu/TF-ID-arxiv-papers) from Hugging Face
-4. Move **annotations_with_caption.json** to `./annotations`
+4. Move **annotations_with_caption.json** to `./annotations` (Use **annotations_no_caption.json** if you don't want the bounding boxes to include text captions)
 5. Unzip the **arxiv_paper_images.zip** and move the .png images to `./images`
 6. Convert the coco format dataset to florence 2 format: `python coco_to_florence.py`
 7. You should see **train.jsonl** and **test.jsonl** under `./annotations`
@@ -28,6 +26,10 @@ All TF-ID models are finetuned from [microsoft/Florence-2](https://huggingface.c
 
 ## Hardware Requirement
 With [microsoft/Florence-2-large-ft](https://huggingface.co/microsoft/Florence-2-large-ft), `BATCH_SIZE=4` will require at least 40GB VRAM on a single GPU. The [microsoft/Florence-2-base-ft](https://huggingface.co/microsoft/Florence-2-base-ft) model takes much less VRAM. Please modify the `BATCH_SIZE` and `CHECKPOINT` parameter in the `train.py` before you start training.
+
+## Acknowledgement
+- I learned how to work with Florence 2 models from this [Roboflow's awesome tutorial](https://blog.roboflow.com/fine-tune-florence-2-object-detection/).
+- My friend Yi Zhang helped annotate some data to train our proof-of-concept models including a yolo-based TF-ID model.
 
 ## Citation
 If you find TD-ID useful, please cite this project as:
