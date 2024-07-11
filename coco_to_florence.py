@@ -9,6 +9,7 @@ import random
 
 train_percentage = 0.85
 coco_json_dir = "./annotations/annotations_with_caption.json" # we take coco format dataset by default
+# coco_json_dir = "./annotations/annotations_no_caption.json" # we take coco format dataset by default
 output_dir = "./annotations"
 
 def convert_to_florence_format(coco_json_dir, output_dir):
