@@ -30,3 +30,5 @@ generated_text = processor.batch_decode(generated_ids, skip_special_tokens=False
 parsed_answer = processor.post_process_generation(generated_text, task="<OD>", image_size=(image.width, image.height))
 
 print(parsed_answer)
+
+# to visualize the generated answer, check out this colab example from Florence 2 repo: https://huggingface.co/microsoft/Florence-2-large/blob/main/sample_inference.ipynb
